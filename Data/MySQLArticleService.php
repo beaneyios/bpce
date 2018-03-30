@@ -26,7 +26,7 @@ class MySQLArticleService implements ArticleInterface {
     private $colSharelink = "`ShareLink`";
     
     public function __construct() {
-        $this->db = PDOManager::PDO();
+        $this->db = PostGresPDOManager::PDO();
     }
             
     public function create($article) {
