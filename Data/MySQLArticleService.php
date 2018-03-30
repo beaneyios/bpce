@@ -13,16 +13,26 @@
 
 include("Article.php");
 include("ArticleServiceInterface.php");
+include("PDOManager.php");
 
 class MySQLArticleService implements ArticleInterface {
+    //DB details
     private $db;
     
+    //Table details
+    private $tableName = "`articleindex`";
+    private $colHeadline = "`Headline`";
+    private $colSubheadline = "`Subheadline`";
+    private $colSharelink = "`ShareLink`";
+    
     public function __construct() {
-        $this->db = new PDO('mysql:host=localhost;dbname=news;charset=utf8mb4', '', '');
+        $this->db = PDOManager::PDO();
     }
             
     public function create($article) {
-        $sql = "INSERT INTO `articleindex` (`Headline`, `Subheadline`, `ShareLink`) VALUES (:headline, :subheadline, :sharelink)";
+        $columns = "".$this->tableName." (".$this->colHeadline.", ".$this->colSubheadline.", ".$this->colSharelink.")";
+        $values  = "(:headline, :subheadline, :sharelink)";
+        $sql = "INSERT INTO ".$columns." VALUES ".$values;
  
         //Prepare our statement.
         $statement = $this->db->prepare($sql);
