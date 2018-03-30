@@ -19,10 +19,28 @@ function init() {
             $newArticle->Subheadline = $postMalone['Subheadline'];
             $newArticle->ShareLink = $postMalone['ShareLink'];
 
-            echo $service->create($newArticle);
+            echo json_encode($service->create($newArticle));
             break;
         case 'PUT':
-            echo 'put';
+            $putDiddy = json_decode(file_get_contents('php://input'), true); 
+            $article = $service->getByID($putDiddy['ID']);
+            
+            if (strlen($putDiddy['Headline']) != 0)
+            {
+                $article->Headline = $putDiddy['Headline'];
+            }
+
+            if (strlen($putDiddy['Subheadline']) != 0)
+            {
+                $article->Subheadline = $putDiddy['Subheadline'];    
+            }
+            
+            if (strlen($putDiddy['ShareLink']) != 0)
+            {
+                $article->ShareLink = $putDiddy['ShareLink'];
+            }
+            
+            echo json_encode($service->update($article));
             break;
         case 'DELETE':
             echo 'delete';
@@ -32,5 +50,4 @@ function init() {
             break;
     }
 }
-
 ?>
