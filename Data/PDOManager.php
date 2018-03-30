@@ -20,3 +20,18 @@ class PDOManager {
         return new PDO('mysql:host='. self::$host.';dbname=news;charset=utf8mb4', self::$username, self::$password);
     }
 }
+
+class PostGresPDOManager {
+    static function PDO() {
+        $db = parse_url(getenv("DATABASE_URL"));
+        
+        return new PDO("pgsql:" . sprintf(
+            "host=%s;port=%s;user=%s;password=%s;dbname=%s",
+            $db["host"],
+            $db["port"],
+            $db["user"],
+            $db["pass"],
+            ltrim($db["path"], "/")
+        ));
+    }
+}

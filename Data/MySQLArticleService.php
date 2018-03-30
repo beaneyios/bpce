@@ -26,7 +26,7 @@ class MySQLArticleService implements ArticleInterface {
     private $colSharelink = "`ShareLink`";
     
     public function __construct() {
-        $this->db = PDOManager::PDO();
+        $this->db = PostGresPDOManager::PDO();
     }
             
     public function create($article) {
@@ -61,12 +61,11 @@ class MySQLArticleService implements ArticleInterface {
     }
 
     public function get() {
-        $stmt = $this->db->query("SELECT * FROM articleindex");
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        $objArticles = array();
-   
         try {
+            $stmt = $this->db->query("SELECT * FROM articleindex");
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+            $objArticles = array();
             foreach($results as $item) {
                 $objArticle = new Article();
                 $objArticle->ID = $item['ID'];
