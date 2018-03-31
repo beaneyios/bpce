@@ -61,7 +61,7 @@ class MySQLArticleService implements ArticleInterface {
             echo "Success";
             return $article;
         } else {
-            echo 'An error occurred: '.implode(":",$this->pdo->errorInfo());
+            echo 'An error occurred: '.implode(":",$this->db->errorInfo());
 //            echo "Query failure - " . $statement->errorInfo() . "<br>";
 //            echo "General error - " . $this->db->errorInfo();
 
