@@ -30,14 +30,14 @@ class MySQLArticleService implements ArticleInterface {
     }
             
     public function create($article) {
-        $columns = " (".$this->colHeadline.", ".$this->colSubheadline.", ".$this->colSharelink.")";
-        $values  = "(:headline, :subheadline, :sharelink)";
+        $columns = " (`ID`, ".$this->colHeadline.", ".$this->colSubheadline.", ".$this->colSharelink.")";
+        $values  = "(:ID, :headline, :subheadline, :sharelink)";
         $sql = "INSERT INTO ".$this->tableName." ".$columns." VALUES ".$values;
  
         //Prepare our statement.
         $statement = $this->db->prepare($sql);
 
-        //$statement->bindValue(':ID', 1);
+        $statement->bindValue(':ID', 1);
         $statement->bindValue(':headline', $article->Headline);
         $statement->bindValue(':subheadline', $article->Subheadline);
         $statement->bindValue(':sharelink', $article->Sharelink);
@@ -53,6 +53,7 @@ class MySQLArticleService implements ArticleInterface {
         
         if($inserted) {
             $article->ID = $this->db->lastInsertID();
+            echo "Success";
             return $article;
         } else {
             echo "Failure";
