@@ -20,17 +20,19 @@ class MySQLArticleService implements ArticleInterface {
     private $db;
     
     //Table details
-    private $tableName = "`articleindex`";
-    private $colHeadline = "`Headline`";
-    private $colSubheadline = "`Subheadline`";
-    private $colSharelink = "`ShareLink`";
+    private $tableName = "articleindex";
+    private $colHeadline = "Headline";
+    private $colSubheadline = "Subheadline";
+    private $colSharelink = "ShareLink";
     
     public function __construct() {
         $this->db = PostGresPDOManager::PDO();
     }
             
-    public function create($article) {
-        $columns = " (`ID`, ".$this->colHeadline.", ".$this->colSubheadline.", ".$this->colSharelink.")";
+    public function create($article) {      
+        
+        
+        $columns = " (ID, ".$this->colHeadline.", ".$this->colSubheadline.", ".$this->colSharelink.")";
         $values  = "(:ID, :headline, :subheadline, :sharelink)";
         $sql = "INSERT INTO ".$this->tableName." ".$columns." VALUES ".$values;
  
