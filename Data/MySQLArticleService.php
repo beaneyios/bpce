@@ -29,7 +29,8 @@ class MySQLArticleService implements ArticleInterface {
         $this->db = PostGresPDOManager::PDO();
     }
             
-    public function create($article) {      
+    public function create($article) {   
+        $sql2 = "INSERT INTO articleindex (ID, Headline, Subheadline, ShareLink) VALUES (1, 'Test', 'test2', 'test3');";
         
         
         $columns = " (ID, ".$this->colHeadline.", ".$this->colSubheadline.", ".$this->colSharelink.")";
@@ -37,12 +38,12 @@ class MySQLArticleService implements ArticleInterface {
         $sql = "INSERT INTO ".$this->tableName." ".$columns." VALUES ".$values;
  
         //Prepare our statement.
-        $statement = $this->db->prepare($sql);
+        $statement = $this->db->prepare($sql2);
 
-        $statement->bindValue(':ID', 1);
-        $statement->bindValue(':headline', $article->Headline);
-        $statement->bindValue(':subheadline', $article->Subheadline);
-        $statement->bindValue(':sharelink', $article->Sharelink);
+        //$statement->bindValue(':ID', 1);
+        //$statement->bindValue(':headline', $article->Headline);
+        //$statement->bindValue(':subheadline', $article->Subheadline);
+        //$statement->bindValue(':sharelink', $article->Sharelink);
 
 
         //Execute the statement and insert our values.
