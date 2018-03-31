@@ -30,7 +30,7 @@ class MySQLArticleService implements ArticleInterface {
     }
             
     public function create($article) {   
-        $sql2 = "INSERT INTO articleindex (ID, Headline, Subheadline, ShareLink) VALUES (1, 'Test', 'test2', 'test3')";
+        $sql2 = "INSERT INTO articleindex (ID, Headline, Subheadline, ShareLink) VALUES (:id, :headline, :subheadline, :sharelink)";
         
         
         $columns = " (ID, ".$this->colHeadline.", ".$this->colSubheadline.", ".$this->colSharelink.")";
@@ -42,10 +42,10 @@ class MySQLArticleService implements ArticleInterface {
 
         $statement = $this->db->prepare($sql2);
 
-        //$statement->bindValue(':ID', 1);
-        //$statement->bindValue(':headline', $article->Headline);
-        //$statement->bindValue(':subheadline', $article->Subheadline);
-        //$statement->bindValue(':sharelink', $article->Sharelink);
+        $statement->bindValue(':ID', 2);
+        $statement->bindValue(':headline', 'Test');
+        $statement->bindValue(':subheadline', 'Test');
+        $statement->bindValue(':sharelink', 'Test');
 
 
         //Execute the statement and insert our values.
