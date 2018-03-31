@@ -38,6 +38,8 @@ class MySQLArticleService implements ArticleInterface {
         $sql = "INSERT INTO ".$this->tableName." ".$columns." VALUES ".$values;
  
         //Prepare our statement.
+        $this->db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+
         $statement = $this->db->prepare($sql2);
 
         //$statement->bindValue(':ID', 1);
@@ -60,7 +62,8 @@ class MySQLArticleService implements ArticleInterface {
             return $article;
         } else {
             echo "Failure";
-            die("Execute query error, because: ". print_r($this->db->errorInfo(),true));
+            echo "Query failure - " . $statement->errorInfo() . "<br>";
+            echo "General error - " . $this->db->errorInfo();
 
             return null;
         }
