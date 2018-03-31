@@ -30,7 +30,7 @@ class MySQLArticleService implements ArticleInterface {
     }
             
     public function create($article) {   
-        $sql2 = "INSERT INTO articleindex (ID, Headline, Subheadline, ShareLink) VALUES (1, 'Test', 'test2', 'test3');";
+        $sql2 = "INSERT INTO articleindex (ID, Headline, Subheadline, ShareLink) VALUES (1, 'Test', 'test2', 'test3')";
         
         
         $columns = " (ID, ".$this->colHeadline.", ".$this->colSubheadline.", ".$this->colSharelink.")";
