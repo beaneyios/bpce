@@ -19,7 +19,7 @@ function init() {
             $newArticle = new Article();
             $newArticle->Headline = $postMalone['Headline'];
             $newArticle->Subheadline = $postMalone['Subheadline'];
-            $newArticle->ShareLink = $postMalone['ShareLink'];
+            $newArticle->Sharelink = $postMalone['ShareLink'];
 
             echo json_encode($service->create($newArticle));
             break;
