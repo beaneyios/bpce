@@ -30,12 +30,11 @@ class MySQLArticleService implements ArticleInterface {
     }
             
     public function create($article) {   
-        $sql2 = 'INSERT INTO articleindex("Headline", "Subheadline", "ShareLink") VALUES(:Headline, :Subheadline, :ShareLink)';
+//        $sql2 = 'INSERT INTO articleindex("Headline", "Subheadline", "ShareLink") VALUES(:Headline, :Subheadline, :ShareLink)';
         
-        
-        $columns = " (".$this->colHeadline.", ".$this->colSubheadline.", ".$this->colSharelink.")";
+        $columns = '("'.$this->colHeadline.'", "'.$this->colSubheadline.'", "'.$this->colSharelink.'")';
         $values  = "(:Headline, :Subheadline, :ShareLink)";
-        $sql = "INSERT INTO ".$this->tableName."".$columns." VALUES".$values;
+        $sql = 'INSERT INTO '.$this->tableName.''.$columns.' VALUES'.$values;
  
         //Prepare our statement.
         $this->db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
