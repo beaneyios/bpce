@@ -7,14 +7,6 @@ init();
 function init() {
     $service = new MySQLArticleService();
     
-    $article = new Article();
-    $article->Headline = 'Test';
-    $article->Subheadline = 'Test 1';
-    $article->Sharelink = 'Test 2';
-    $article->ID = 2;
-    $service->create($article);
-    return;
-    
     $method = $_SERVER['REQUEST_METHOD'];
 
     switch ($method) {
