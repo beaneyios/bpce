@@ -39,7 +39,7 @@ function init() {
             
             if (strlen($putDiddy['ShareLink']) != 0)
             {
-                $article->ShareLink = $putDiddy['ShareLink'];
+                $article->Sharelink = $putDiddy['ShareLink'];
             }
             
             echo json_encode($service->update($article));
