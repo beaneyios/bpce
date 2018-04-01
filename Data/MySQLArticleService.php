@@ -41,9 +41,9 @@ class MySQLArticleService implements ArticleInterface {
 
         $statement = $this->db->prepare($sql);
 
-        $statement->bindValue(':Headline', 'Test');
-        $statement->bindValue(':Subheadline', 'Test');
-        $statement->bindValue(':ShareLink', 'Test');
+        $statement->bindValue(':Headline', $article->Headline);
+        $statement->bindValue(':Subheadline', $article->Subheadline);
+        $statement->bindValue(':ShareLink', $article->Sharelink);
 
 
         //Execute the statement and insert our values.
