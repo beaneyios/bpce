@@ -35,12 +35,12 @@ class MySQLArticleService implements ArticleInterface {
         
         $columns = " (".$this->colHeadline.", ".$this->colSubheadline.", ".$this->colSharelink.")";
         $values  = "(:Headline, :Subheadline, :ShareLink)";
-        $sql = "INSERT INTO ".$this->tableName." ".$columns." VALUES ".$values;
+        $sql = "INSERT INTO ".$this->tableName."".$columns." VALUES".$values;
  
         //Prepare our statement.
         $this->db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 
-        $statement = $this->db->prepare($sql2);
+        $statement = $this->db->prepare($sql);
 
         $statement->bindValue(':Headline', 'Test');
         $statement->bindValue(':Subheadline', 'Test');
