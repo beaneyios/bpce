@@ -27,6 +27,12 @@ class PostGresPDOManager {
     private static $password = "92b8b8c354c7bfdcf49059e9b8564d003bf00eeb091f3ef87909fbb5937b52ad";
     private static $database = "de6a51rpmgolq8";
     private static $port = 5432;
+
+    // private static $host = "localhost";
+    // private static $username = "mattbeaney";
+    // private static $password = "59570";
+    // private static $database = "mattbeaney";
+    // private static $port = 5432;
     
     static function PDO() {
         return new PDO("pgsql:" . sprintf(
