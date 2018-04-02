@@ -84,7 +84,7 @@ class MySQLArticleService implements ArticleInterface {
     
     public function getByID($articleID) {
         $stmt = $this->db->query("SELECT * FROM articleindex WHERE ID = ".$articleID);
-        $article = $stmt->fetch();
+        $article = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         if (!empty($article))
         {
