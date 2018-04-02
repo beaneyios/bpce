@@ -31,10 +31,10 @@ class EnvironmentVariables {
     private static function localCredentials() {
         $credentials = new DBCredentials();
         $credentials->host = "localhost";
-        $credentials->username = "mattbeaney";
-        $credentials->password = "59570";
-        $credentials->database = "mattbeaney";
-        $credentials->port = "5432";
+        $credentials->username = "postgres";
+        $credentials->password = "access28";
+        $credentials->database = "postgres";
+        $credentials->port = "5433";
         return $credentials;
     }
 }

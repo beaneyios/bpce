@@ -8,6 +8,7 @@ function init() {
     
     $service = new MySQLArticleService();
     
+    //hell owrrldl 
     $method = $_SERVER['REQUEST_METHOD'];
 
     switch ($method) {
