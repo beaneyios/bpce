@@ -11,9 +11,10 @@
  * @author Matt
  */
 
-include("Article.php");
-include("ArticleServiceInterface.php");
-include("PDOManager.php");
+include($_SERVER['DOCUMENT_ROOT']."/bpce/Data/Services/Model/Article.php");
+include($_SERVER['DOCUMENT_ROOT']."/bpce/Data/Services/Interfaces/ArticleServiceInterface.php");
+
+include($_SERVER['DOCUMENT_ROOT']."/bpce/Data/Database/Controllers/PDO.php");
 
 class MySQLArticleService implements ArticleInterface {
     //DB details
@@ -26,17 +27,14 @@ class MySQLArticleService implements ArticleInterface {
     private $colSharelink = "ShareLink";
     
     public function __construct() {
-        $this->db = PostGresPDOManager::PDO();
+        $this->db = PDOSelector::PDO();
     }
             
-    public function create($article) {   
-//        $sql2 = 'INSERT INTO articleindex("Headline", "Subheadline", "ShareLink") VALUES(:Headline, :Subheadline, :ShareLink)';
-        
+    public function create($article) {           
         $columns = '("'.$this->colHeadline.'", "'.$this->colSubheadline.'", "'.$this->colSharelink.'")';
         $values  = "(:Headline, :Subheadline, :ShareLink)";
         $sql = 'INSERT INTO '.$this->tableName.''.$columns.' VALUES'.$values;
  
-        //Prepare our statement.
         $this->db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 
         $statement = $this->db->prepare($sql);
@@ -45,24 +43,16 @@ class MySQLArticleService implements ArticleInterface {
         $statement->bindValue(':Subheadline', $article->Subheadline);
         $statement->bindValue(':ShareLink', $article->Sharelink);
 
-
-        //Execute the statement and insert our values.
         try {
             $inserted = $statement->execute();
         } catch(PDOException $ex) {
-            echo $ex;
             return null;
         }
         
         if($inserted) {
             $article->ID = $this->db->lastInsertID();
-            echo "Success";
             return $article;
         } else {
-            echo 'An error occurred: '.implode(":",$this->db->errorInfo());
-//            echo "Query failure - " . $statement->errorInfo() . "<br>";
-//            echo "General error - " . $this->db->errorInfo();
-
             return null;
         }
     }

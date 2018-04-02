@@ -1,10 +1,11 @@
 <?php
 
 header("Access-Control-Allow-Origin: *");
-include("Data/MySQLArticleService.php");
+include("Data/Services/Controllers/MySQLArticleService.php");
 init();
 
 function init() {
+    
     $service = new MySQLArticleService();
     
     $method = $_SERVER['REQUEST_METHOD'];
